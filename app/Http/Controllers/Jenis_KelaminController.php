@@ -11,7 +11,9 @@ class Jenis_KelaminController extends Controller
 public function index() {
     $datajenis_Kelamin = Jenis_Kelamin::all();
     $datajenis_Kelamin = \App\Models\Jenis_Kelamin::all();
-    return view('jenis_kelamin.index', compact('dataDesa', 'datajenis_Kelamin'));
+    $dataDesa = \App\Models\Desa::all();
+    $dataPasien = \App\Models\Pasien::with(['jenis_kelamin', 'desa'])->get();
+    return view('jenis_kelamin.index', compact('dataDesa', 'datajenis_Kelamin', 'dataPasien'));
 }
 
    public function store(Request $request)

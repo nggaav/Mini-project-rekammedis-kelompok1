@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PasienController; // Kita pakai logika simpan dari sini
+use App\Http\Controllers\DesaController;
+use App\Http\Controllers\Jenis_KelaminController;
+use App\Http\Controllers\PasienController;
 
 /*
 |--------------------------------------------------------------------------
@@ -9,16 +11,15 @@ use App\Http\Controllers\PasienController; // Kita pakai logika simpan dari sini
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama langsung ke /desa
 Route::get('/', function () {
     return redirect('/desa');
 });
 
-Route::post('/pasien', [PasienController::class, 'store'])->name('pasien.store');
-
-// OR, if you are using a resource controller:
-Route::resource('pasien', PasienController::class);
-
-// Kita buat rute /desa TAPI isinya menjalankan fungsi di PasienController
-Route::get('/desa', [PasienController::class, 'index'])->name('desa.index');
-Route::post('/desa', [PasienController::class, 'store'])->name('desa.store');
+// Routes untuk Desa
+Route::resource('desa', DesaController::class);
+Route::get('/desa', [DesaController::class, 'index'])->name('desa.index');
+Route::post('/desa', [DesaController::class, 'store'])->name('desa.store');
+Route::delete('/desa/{id}', [DesaController::class, 'destroy'])->name('desa.destroy');
+Route::get('/desa', [App\Http\Controllers\DesaController::class, 'index'])->name('desa.index');
+Route::post('/desa/store', [App\Http\Controllers\DesaController::class, 'store'])->name('desa.store');
+Route::delete('/desa/{id}', [App\Http\Controllers\DesaController::class, 'destroy'])->name('desa.destroy');

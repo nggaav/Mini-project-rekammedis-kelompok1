@@ -11,6 +11,7 @@ class Desa extends Model
 
     // Kasih tahu Laravel kalau nama tabelnya 'desa' (bukan desas)
     protected $table = 'desa';
+    public $timestamps = false;
 
     // Kolom yang boleh diisi
     protected $fillable = ['nama_desa'];

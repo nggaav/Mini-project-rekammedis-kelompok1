@@ -6,25 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('desa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_desa'); // Ini untuk menyimpan nama desanya
-          //  $table->timestamps();
+            $table->string('nama_desa');
+         //   $table->timestamps();
         });
     }
-public function run()
-{
-    \App\Models\Desa::create(['nama_desa' => 'Desa Sukamaju']);
-    \App\Models\Desa::create(['nama_desa' => 'Desa Sukamiskin']);
-}
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('desa');
