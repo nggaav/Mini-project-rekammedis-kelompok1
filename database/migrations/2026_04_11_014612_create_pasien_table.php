@@ -17,8 +17,8 @@ class CreatePasienTable extends Migration
         $table->string('no_hp')->nullable();
         $table->text('alamat')->nullable();
         $table->text('keterangan')->nullable();
-        $table->unsignedBigInteger('desa_id');
-        $table->unsignedBigInteger('jenis_kelamin_id');
+        $table->foreignId('desa_id')->constrained('desa');
+        $table->foreignId('jenis_kelamin_id')->constrained('jenis_kelamin');
         });
     }
 
