@@ -9,10 +9,14 @@ class Desa extends Model
 {
     use HasFactory;
 
-    // Kasih tahu Laravel kalau nama tabelnya 'desa' (bukan desas)
-    protected $table = 'desa';
-    public $timestamps = false;
+    protected $table = 'desas';
 
-    // Kolom yang boleh diisi
-    protected $fillable = ['nama_desa'];
+    protected $fillable = [
+        'nama_desa'
+    ];
+
+    public function pasien()
+    {
+        return $this->hasMany(Pasien::class);
+    }
 }

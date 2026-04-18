@@ -2,33 +2,38 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pasien extends Model
 {
-    protected $table = 'pasien'; // Pastikan nama tabelnya pasien
-    public $timestamps = false;  // Matikan timestamps biar gak error updated_at
+    use HasFactory;
 
-    // Tambahkan semua kolom dari diagram Kak Nurul di sini
+    protected $table = 'pasiens'; // sesuaikan dengan nama tabel
+
     protected $fillable = [
-        'nama_pasien',
+        'nama',
         'nik',
         'tanggal_lahir',
-        'usia',
-        'no_hp',
         'alamat',
-        'keterangan',
         'desa_id',
-        'jenis_kelamin_id'
+        'jenis_kelamin_id',
+        'no_hp'
     ];
 
-    public function jenis_kelamin()
-    {
-        return $this->belongsTo(Jenis_Kelamin::class, 'jenis_kelamin_id');
-    }
+    /*
+    |--------------------------------------------------------------------------
+    | RELATION
+    |--------------------------------------------------------------------------
+    */
 
     public function desa()
     {
-        return $this->belongsTo(Desa::class, 'desa_id');
+        return $this->belongsTo(Desa::class);
+    }
+
+    public function jenisKelamin()
+    {
+        return $this->belongsTo(JenisKelamin::class);
     }
 }
